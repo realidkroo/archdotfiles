@@ -1,0 +1,4 @@
+module qs.modules.ii.background.widgets.mac
+MacClockWidget 1.0 MacClockWidget.qml
+MacDateWidget 1.0 MacDateWidget.qml
+MacWeatherWidget 1.0 MacWeatherWidget.qml
