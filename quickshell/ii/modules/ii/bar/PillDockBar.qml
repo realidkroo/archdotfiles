@@ -100,7 +100,7 @@ Scope {
                     width: pillContent.implicitWidth + 16
                     height: Appearance.sizes.baseBarHeight
                     radius: Appearance.rounding.windowRounding
-                    color: Appearance.colors.colLayer0
+                    color: ColorUtils.transparentize(Appearance.colors.colLayer0, 0.7)
                     border.width: 1
                     border.color: Appearance.colors.colLayer0Border
                     clip: true
@@ -109,13 +109,13 @@ Scope {
                     y: pillBarRoot.shouldShow ? 0 : (Config.options.bar.bottom ? Appearance.sizes.baseBarHeight : -Appearance.sizes.baseBarHeight)
                     
                     Behavior on opacity {
-                        animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
+                        animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
                     }
                     Behavior on y {
-                        animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
+                        animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
                     }
                     Behavior on width {
-                        animation: Appearance.animation.elementResize.numberAnimation.createObject(this)
+                        animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
                     }
                 }
 
@@ -127,12 +127,29 @@ Scope {
                     spacing: 4
 
                     Behavior on implicitWidth {
-                        animation: Appearance.animation.elementResize.numberAnimation.createObject(this)
+                        animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                    }
+                    Behavior on spacing {
+                        animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
                     }
 
                     // Left sidebar button
                     BarGroup {
                         Layout.alignment: Qt.AlignVCenter
+                        Layout.preferredWidth: implicitWidth
+                        Behavior on Layout.preferredWidth {
+                            animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        }
+                        scale: pillBarRoot.shouldShow ? 1 : 0
+                        opacity: pillBarRoot.shouldShow ? 1 : 0
+                        transformOrigin: Item.Left
+                        visible: opacity > 0
+                        Behavior on scale {
+                            animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        }
+                        Behavior on opacity {
+                            animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        }
                         LeftSidebarButton {
                             colBackground: ColorUtils.transparentize(Appearance.colors.colLayer1Hover, 1)
                         }
@@ -141,6 +158,21 @@ Scope {
                     // Active window (truncated)
                     BarGroup {
                         Layout.alignment: Qt.AlignVCenter
+                        Layout.fillWidth: true
+                        Layout.preferredWidth: implicitWidth
+                        Behavior on Layout.preferredWidth {
+                            animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        }
+                        scale: pillBarRoot.shouldShow ? 1 : 0
+                        opacity: pillBarRoot.shouldShow ? 1 : 0
+                        transformOrigin: Item.Left
+                        visible: opacity > 0
+                        Behavior on scale {
+                            animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        }
+                        Behavior on opacity {
+                            animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        }
                         ColumnLayout {
                             spacing: -4
                             StyledText {
@@ -170,6 +202,20 @@ Scope {
                     // Resources
                     BarGroup {
                         Layout.alignment: Qt.AlignVCenter
+                        Layout.preferredWidth: implicitWidth
+                        Behavior on Layout.preferredWidth {
+                            animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        }
+                        scale: pillBarRoot.shouldShow ? 1 : 0
+                        opacity: pillBarRoot.shouldShow ? 1 : 0
+                        transformOrigin: Item.Left
+                        visible: opacity > 0
+                        Behavior on scale {
+                            animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        }
+                        Behavior on opacity {
+                            animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        }
                         Resources {
                             alwaysShowAllResources: false
                         }
@@ -179,6 +225,20 @@ Scope {
                     BarGroup {
                         Layout.alignment: Qt.AlignVCenter
                         padding: workspacesWidget.widgetPadding
+                        Layout.preferredWidth: implicitWidth
+                        Behavior on Layout.preferredWidth {
+                            animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        }
+                        scale: pillBarRoot.shouldShow ? 1 : 0
+                        opacity: pillBarRoot.shouldShow ? 1 : 0
+                        transformOrigin: Item.Left
+                        visible: opacity > 0
+                        Behavior on scale {
+                            animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        }
+                        Behavior on opacity {
+                            animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        }
                         Workspaces {
                             id: workspacesWidget
                             Layout.fillHeight: true
@@ -197,6 +257,20 @@ Scope {
                     // Clock & Utils
                     BarGroup {
                         Layout.alignment: Qt.AlignVCenter
+                        Layout.preferredWidth: implicitWidth
+                        Behavior on Layout.preferredWidth {
+                            animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        }
+                        scale: pillBarRoot.shouldShow ? 1 : 0
+                        opacity: pillBarRoot.shouldShow ? 1 : 0
+                        transformOrigin: Item.Left
+                        visible: opacity > 0
+                        Behavior on scale {
+                            animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        }
+                        Behavior on opacity {
+                            animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        }
                         ClockWidget {
                             showDate: true
                             Layout.alignment: Qt.AlignVCenter
@@ -211,6 +285,20 @@ Scope {
                     Loader {
                         active: Config.options.bar.weather.enable
                         Layout.alignment: Qt.AlignVCenter
+                        Layout.preferredWidth: active ? implicitWidth : 0
+                        Behavior on Layout.preferredWidth {
+                            animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        }
+                        scale: pillBarRoot.shouldShow && active ? 1 : 0
+                        opacity: pillBarRoot.shouldShow && active ? 1 : 0
+                        transformOrigin: Item.Left
+                        visible: opacity > 0
+                        Behavior on scale {
+                            animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        }
+                        Behavior on opacity {
+                            animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        }
                         sourceComponent: BarGroup {
                             WeatherBar {}
                         }
@@ -219,6 +307,20 @@ Scope {
                     // System tray
                     BarGroup {
                         Layout.alignment: Qt.AlignVCenter
+                        Layout.preferredWidth: implicitWidth
+                        Behavior on Layout.preferredWidth {
+                            animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        }
+                        scale: pillBarRoot.shouldShow ? 1 : 0
+                        opacity: pillBarRoot.shouldShow ? 1 : 0
+                        transformOrigin: Item.Left
+                        visible: opacity > 0
+                        Behavior on scale {
+                            animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        }
+                        Behavior on opacity {
+                            animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        }
                         SysTray {
                             Layout.fillHeight: true
                             invertSide: Config?.options.bar.bottom
@@ -228,6 +330,20 @@ Scope {
                     // Right indicators
                     BarGroup {
                         Layout.alignment: Qt.AlignVCenter
+                        Layout.preferredWidth: implicitWidth
+                        Behavior on Layout.preferredWidth {
+                            animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        }
+                        scale: pillBarRoot.shouldShow ? 1 : 0
+                        opacity: pillBarRoot.shouldShow ? 1 : 0
+                        transformOrigin: Item.Left
+                        visible: opacity > 0
+                        Behavior on scale {
+                            animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        }
+                        Behavior on opacity {
+                            animation: NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                        }
                         RippleButton {
                             id: rightSidebarButton
                             implicitWidth: indicatorsRowLayout.implicitWidth + 10 * 2
@@ -243,7 +359,7 @@ Scope {
                             property color colText: toggled ? Appearance.m3colors.m3onSecondaryContainer : Appearance.colors.colOnLayer0
 
                             Behavior on colText {
-                                animation: Appearance.animation.elementMoveFast.colorAnimation.createObject(this)
+                                animation: ColorAnimation { duration: 200; easing.type: Easing.OutCubic }
                             }
 
                             onClicked: GlobalStates.sidebarRightOpen = !GlobalStates.sidebarRightOpen
